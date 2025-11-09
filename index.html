@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go-Back-N ARQ</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="homepage-container">
+        <div class="homepage-content">
+            <h1 class="homepage-title">Go-Back-N ARQ</h1>
+            <p class="homepage-subtitle">Visual Simulator</p>
+            <button class="start-button" onclick="window.location.href='https://gobacknarq.netlify.app/'">
+                Launch Simulator
+            </button>
+        </div>
+    </div>
+
+    <section class="intro-section">
+        <div class="intro-container">
+            <h2 class="intro-heading">What is Go-Back-N ARQ?</h2>
+            <div class="intro-content">
+                <div class="intro-text">
+                    <p>Go-Back-N ARQ (Automatic Repeat reQuest) is a sliding window protocol used for reliable data transmission in computer networks. It allows multiple frames to be sent before requiring an acknowledgment, improving network efficiency.</p>
+                    
+                    <h3>Key Features:</h3>
+                    <ul>
+                        <li><strong>Sliding Window:</strong> Sender can transmit up to N frames before waiting for acknowledgment</li>
+                        <li><strong>Cumulative ACKs:</strong> Receiver acknowledges the last correctly received frame in order</li>
+                        <li><strong>Error Recovery:</strong> On timeout, sender retransmits from the base frame onwards</li>
+                        <li><strong>Efficiency:</strong> Improves throughput by utilizing pipeline transmission</li>
+                    </ul>
+                </div>
+                
+                <div class="intro-diagram">
+                    <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Sender -->
+                        <rect x="20" y="30" width="100" height="50" fill="#00d4ff" rx="5"/>
+                        <text x="70" y="60" text-anchor="middle" fill="#0f2027" font-weight="bold" font-size="16">Sender</text>
+                        
+                        <!-- Receiver -->
+                        <rect x="280" y="30" width="100" height="50" fill="#00d4ff" rx="5"/>
+                        <text x="330" y="60" text-anchor="middle" fill="#0f2027" font-weight="bold" font-size="16">Receiver</text>
+                        
+                        <!-- Window representation -->
+                        <rect x="30" y="100" width="80" height="30" fill="none" stroke="#00ffcc" stroke-width="2" stroke-dasharray="5,5"/>
+                        <text x="70" y="120" text-anchor="middle" fill="#00ffcc" font-size="12">Window (N)</text>
+                        
+                        <!-- Frames going right -->
+                        <g class="frame">
+                            <line x1="120" y1="150" x2="280" y2="150" stroke="#00ffcc" stroke-width="2" marker-end="url(#arrowhead)"/>
+                            <text x="200" y="140" text-anchor="middle" fill="#a0d9e8" font-size="12">Frame 0, 1, 2...</text>
+                        </g>
+                        
+                        <!-- ACK going left -->
+                        <g class="ack">
+                            <line x1="280" y1="180" x2="120" y2="180" stroke="#00d4ff" stroke-width="2" marker-end="url(#arrowhead)"/>
+                            <text x="200" y="200" text-anchor="middle" fill="#a0d9e8" font-size="12">ACK (cumulative)</text>
+                        </g>
+                        
+                        <!-- Timeout scenario -->
+                        <g class="timeout">
+                            <line x1="120" y1="230" x2="280" y2="230" stroke="#ff6b6b" stroke-width="2" marker-end="url(#arrowhead-red)" stroke-dasharray="5,5"/>
+                            <text x="200" y="250" text-anchor="middle" fill="#ff6b6b" font-size="12">Timeout → Retransmit from base</text>
+                        </g>
+                        
+                        <!-- Arrow markers -->
+                        <defs>
+                            <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                <polygon points="0 0, 10 3, 0 6" fill="#00ffcc"/>
+                            </marker>
+                            <marker id="arrowhead-red" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                <polygon points="0 0, 10 3, 0 6" fill="#ff6b6b"/>
+                            </marker>
+                        </defs>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>Created by <strong>Sunesh Krishnan N</strong> (24BCE1925) & <strong>Aravind G</strong> (24BCE1293) · Guided by <strong>Dr. Swaminathan Annadurai</strong></p>
+    </footer>
+</body>
+</html>
